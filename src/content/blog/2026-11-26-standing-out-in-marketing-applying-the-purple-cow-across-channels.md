@@ -3,6 +3,8 @@ title: "Standing Out in Marketing: Applying the Purple Cow Across Channels"
 description: "Standing out in modern marketing and media is hard. A great way to
   be different is using the principles of the Purple Cow from Seth Godin to
   command attention and wow your end customer. "
+author:
+  name: Steve Schlecht
 date: 2026-11-26
 status: published
 ---
