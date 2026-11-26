@@ -2,6 +2,7 @@
 media:
   input: public/images
   output: /images
+  categories: ["image"]
 
 content:
   - name: blog
@@ -16,9 +17,24 @@ content:
         label: Title
         type: string
         required: true
+      - name: seoTitle
+        label: Title tag (SEO browser title)
+        type: string
       - name: description
-        label: Description (shown in Google results and post lists, about 150 characters)
+        label: Meta description (shown in Google results and post lists, ~150 chars)
         type: text
+      - name: author
+        label: Author
+        type: object
+        fields:
+          - name: name
+            label: Author name
+            type: string
+          - name: avatar
+            label: Author photo
+            type: image
+            options:
+              path: public/images/authors
       - name: date
         label: Publish date
         type: date
@@ -30,36 +46,15 @@ content:
         required: true
         options:
           values: [draft, published]
+      - name: coverImage
+        label: Cover image
+        type: image
+        options:
+          path: public/images/blog
       - name: body
         label: Post
         type: rich-text
-
-  - name: home
-    label: Home page intro
-    type: file
-    path: src/content/pages/home.md
-    fields:
-      - name: title
-        label: Title
-        type: string
-      - name: description
-        label: Description (for Google)
-        type: text
-      - name: body
-        label: Intro
-        type: rich-text
-
-  - name: about
-    label: About page
-    type: file
-    path: src/content/pages/about.md
-    fields:
-      - name: title
-        label: Title
-        type: string
-      - name: description
-        label: Description (for Google)
-        type: text
-      - name: body
-        label: Content
-        type: rich-text
+        options:
+          path: public/images/blog
+          rename: true
+          switcher: true
