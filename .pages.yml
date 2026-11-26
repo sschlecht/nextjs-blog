@@ -1,28 +1,65 @@
+# Pages CMS configuration: https://pagescms.org/docs/
 media:
-  input: public/assets
-  output: /assets
-  categories: [ "image" ]
+  input: public/images
+  output: /images
+
 content:
-  - name: posts
-    label: Posts
+  - name: blog
+    label: Blog posts
     type: collection
-    path: _posts
+    path: src/content/blog
     view:
-      fields: [ coverImage, title, date ]
+      fields: [title, date, status]
+      primary: title
     fields:
-      - { name: title, label: Title, type: string, required: true }
-      - { name: excerpt, label: Excerpt, type: string }
-      - { name: coverImage, label: Cover image, type: image }
-      - { name: date, label: Date, type: date, options: { time: true, format: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" } }
-      - name: author
-        label: Author
-        type: object
-        fields:
-          - { name: name, label: Name, type: string }
-          - { name: picture, label: Picture, type: image }
-      - name: ogImage
-        label: Image (social sharing)
-        type: object
-        fields:
-          - { name: url, label: URL, type: image }
-      - { name: body, label: Body, type: rich-text }
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: description
+        label: Description (shown in Google results and post lists, about 150 characters)
+        type: text
+      - name: date
+        label: Publish date
+        type: date
+        required: true
+      - name: status
+        label: Status (Draft stays hidden; Published goes live)
+        type: select
+        default: draft
+        required: true
+        options:
+          values: [draft, published]
+      - name: body
+        label: Post
+        type: rich-text
+
+  - name: home
+    label: Home page intro
+    type: file
+    path: src/content/pages/home.md
+    fields:
+      - name: title
+        label: Title
+        type: string
+      - name: description
+        label: Description (for Google)
+        type: text
+      - name: body
+        label: Intro
+        type: rich-text
+
+  - name: about
+    label: About page
+    type: file
+    path: src/content/pages/about.md
+    fields:
+      - name: title
+        label: Title
+        type: string
+      - name: description
+        label: Description (for Google)
+        type: text
+      - name: body
+        label: Content
+        type: rich-text
